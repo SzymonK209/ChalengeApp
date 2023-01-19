@@ -1,27 +1,38 @@
-﻿
-string myName = "Ewa";
-char sex = 'K';
-var myAge = 33;
+﻿{
+    {
+        var myName = "Ewa";
+        bool isFemale = true;
+        var myAge = 33;
 
-if (sex == 'K' && myAge < 30)
-{
-    Console.WriteLine("Kobieta poniże 30 lat");
-}
-else
-{
-    if (myName == "Ewa" && sex == 'K' && myAge == 33)
-    {
-        Console.WriteLine("Ewa, lat 33");
-    }
-    else
-    {
-        if (sex != 'K' && myAge < 18)
+        if (isFemale)
         {
-            Console.WriteLine("Niepełnoletni Mężczyzna");
+            if (myAge < 30)
+            {
+                Console.WriteLine("Kobieta poniże 30 lat");
+            }
+            else if (myAge == 33 && myName == "Ewa")
+            {
+                Console.WriteLine(myName + ", lat 33");
+            }
+            else if (myAge > 30)
+            {
+                Console.WriteLine("Pełnoletnia Kobieta");
+            }
         }
-        else
+        else if (!isFemale)
         {
-            Console.WriteLine("Pełnoletni mężczyzna");
+            if (myAge < 18)
+            {
+                Console.WriteLine("Niepełnoletni Mężczyzna");
+            }
+            else if (myAge == 36 && myName == "Szymon")
+            {
+                Console.WriteLine(myName + ", lat 36");
+            }
+            else
+            {
+                Console.WriteLine("Pełnoletni mężczyzna");
+            }
         }
     }
 }
