@@ -22,15 +22,32 @@ employee3.Addscore(4);
 employee3.Addscore(1);
 employee3.Addscore(9);
 
-if (employee1.Result >= employee2.Result && employee1.Result >= employee3.Result)
+List<Employee> employees = new List<Employee>()
 {
-    Console.WriteLine($"Pracownik z najwyższą sumą ocen: {employee1.Result} pkt \n{employee1.Name} {employee1.Surname} lat {employee1.Age}");
-}
-if (employee2.Result >= employee1.Result && employee2.Result >= employee3.Result)
+   employee1, employee2, employee3
+};
+
+int maxResult = 0;
+Employee employeeWithMaxResult = null;
+
+foreach (var employee in employees)
 {
-    Console.WriteLine($"Pracownik z najwyższą sumą ocen: {employee2.Result} pkt \n{employee2.Name} {employee2.Surname} lat {employee2.Age}");
+    if (employee1.Result > maxResult)
+    {
+        employeeWithMaxResult = employee1;
+        maxResult = employee1.Result;
+    }
+    else if (employee2.Result > maxResult)
+    {
+        employeeWithMaxResult = employee2;
+        maxResult = employee1.Result;
+    }
+    else if (employee3.Result > maxResult)
+    {
+        employeeWithMaxResult = employee3;
+        maxResult = employee1.Result;
+    }
+
 }
-if (employee3.Result >= employee1.Result && employee3.Result >= employee2.Result)
-{
-    Console.WriteLine($"Pracownik z najwyższą sumą ocen: {employee3.Result} pkt \n{employee3.Name} {employee3.Surname} lat {employee3.Age}");
-}
+
+Console.WriteLine($"Pracownik z najwyższą sumą ocen: {maxResult} pkt \n{employeeWithMaxResult.Name} {employeeWithMaxResult.Surname} lat {employeeWithMaxResult.Age}");
