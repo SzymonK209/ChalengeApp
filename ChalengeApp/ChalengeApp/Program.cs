@@ -1,53 +1,48 @@
 ﻿using ChalengeApp;
 
-Employee employee1 = new Employee("Szymon", "Kowalik", "36");
-Employee employee2 = new Employee("Jan", "Kowalski", "27");
-Employee employee3 = new Employee("Janusz", "Nowak", "53");
+Employee employeeSzymon = new Employee("Szymon", "Kowalik", "36");
+Employee employeeJan = new Employee("Jan", "Kowalski", "27");
+Employee employeeJanusz = new Employee("Janusz", "Nowak", "53");
 
-employee1.Addscore(9);
-employee1.Addscore(5);
-employee1.Addscore(7);
-employee1.Addscore(6);
-employee1.Addscore(10);
+employeeSzymon.Addscore(9);
+employeeSzymon.Addscore(5);
+employeeSzymon.Addscore(7);
+employeeSzymon.Addscore(6);
+employeeSzymon.Addscore(10);
 
-employee2.Addscore(5);
-employee2.Addscore(2);
-employee2.Addscore(3);
-employee2.Addscore(8);
-employee2.Addscore(4);
+employeeJan.Addscore(9);
+employeeJan.Addscore(5);
+employeeJan.Addscore(7);
+employeeJan.Addscore(6);
+employeeJan.Addscore(3);
 
-employee3.Addscore(7);
-employee3.Addscore(5);
-employee3.Addscore(4);
-employee3.Addscore(1);
-employee3.Addscore(9);
+employeeJanusz.Addscore(1);
+employeeJanusz.Addscore(2);
+employeeJanusz.Addscore(3);
+employeeJanusz.Addscore(4);
+employeeJanusz.Addscore(5);
 
 List<Employee> employees = new List<Employee>()
 {
-   employee1, employee2, employee3
+   employeeSzymon, employeeJan, employeeJanusz
 };
 
-int maxResult = 0;
-Employee employeeWithMaxResult = null;
+int maxResult = -1;
 
 foreach (var employee in employees)
 {
-    if (employee1.Result > maxResult)
+    if (employee.Result > maxResult)
     {
-        employeeWithMaxResult = employee1;
-        maxResult = employee1.Result;
+        maxResult = employee.Result;
     }
-    else if (employee2.Result > maxResult)
+}
+Console.WriteLine($"The highest number of points: {maxResult} reached by the employee \n");
+
+foreach (var employe in employees)
+{
+    if (employe.Result >= maxResult)
     {
-        employeeWithMaxResult = employee2;
-        maxResult = employee1.Result;
-    }
-    else if (employee3.Result > maxResult)
-    {
-        employeeWithMaxResult = employee3;
-        maxResult = employee1.Result;
+        Console.WriteLine($"{employe.Name} {employe.Surname} age {employe.Age}");
     }
 
 }
-
-Console.WriteLine($"Pracownik z najwyższą sumą ocen: {maxResult} pkt \n{employeeWithMaxResult.Name} {employeeWithMaxResult.Surname} lat {employeeWithMaxResult.Age}");
