@@ -4,23 +4,23 @@ Employee employeeSzymon = new Employee("Szymon", "Kowalik", "36");
 Employee employeeJan = new Employee("Jan", "Kowalski", "27");
 Employee employeeJanusz = new Employee("Janusz", "Nowak", "53");
 
-employeeSzymon.Addscore(9);
-employeeSzymon.Addscore(5);
-employeeSzymon.Addscore(7);
-employeeSzymon.Addscore(6);
-employeeSzymon.Addscore(10);
+employeeSzymon.AddScore(9);
+employeeSzymon.AddScore(5);
+employeeSzymon.AddScore(7);
+employeeSzymon.AddScore(6);
+employeeSzymon.AddNegativeScore(27);
 
-employeeJan.Addscore(9);
-employeeJan.Addscore(5);
-employeeJan.Addscore(7);
-employeeJan.Addscore(6);
-employeeJan.Addscore(3);
+employeeJan.AddScore(9);
+employeeJan.AddScore(5);
+employeeJan.AddScore(7);
+employeeJan.AddScore(6);
+employeeJan.AddScore(3);
 
-employeeJanusz.Addscore(1);
-employeeJanusz.Addscore(2);
-employeeJanusz.Addscore(3);
-employeeJanusz.Addscore(4);
-employeeJanusz.Addscore(5);
+employeeJanusz.AddScore(5);
+employeeJanusz.AddScore(9);
+employeeJanusz.AddNegativeScore(3);
+employeeJanusz.AddScore(10);
+employeeJanusz.AddScore(9);
 
 List<Employee> employees = new List<Employee>()
 {

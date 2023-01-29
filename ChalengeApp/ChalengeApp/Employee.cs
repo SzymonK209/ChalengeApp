@@ -26,9 +26,14 @@
 
         }
 
-        public void Addscore(int score) 
+        public void AddScore(int score) 
         {
             this.score.Add(score);
+        }
+        
+        public void AddNegativeScore(int number)
+        { 
+            this.score.Add(number * (-1)); 
         }
     }
 }
