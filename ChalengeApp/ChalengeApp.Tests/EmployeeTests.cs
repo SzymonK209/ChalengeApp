@@ -3,51 +3,24 @@ namespace ChalengeApp.Tests
     public class EmployeeTests
     {
         [Test]
-        public void WhenEmployeeColectTwoScores_ShouldReturnCorrectResult()
+        public void WhenEmployeeColectGrades_ShouldReturnCorrectStatistics()
         {
             //arrange
-            var employeeSzymon = new Employee("Szymon", "Kowalik", "36");
-            employeeSzymon.AddScore(9);
-            employeeSzymon.AddScore(5);
+            var employee = new Employee("Szymon", "Kowalik");
+            employee.AddGrades(8);
+            employee.AddGrades(6);
+            employee.AddGrades(7);
+            employee.AddGrades(4);
+            employee.AddGrades(10);
 
             //act
-            int result = employeeSzymon.Result;
+            var statistics1 = employee.GetStatistics();
+          
 
             //assert
-            Assert.AreEqual(14, result);
-        }
-
-        [Test]
-        public void WhenEmployeeColectTwoNegativScorec_ShouldReturnCorrectResult()
-        {
-            //arrange
-            var employee = new Employee("Szymon", "Kowalik", "36");
-            employee.AddNegativeScore(5);
-            employee.AddNegativeScore(7);
-
-            //act
-            int result = employee.Result;
-
-            //assert
-            Assert.AreEqual(-12, result);
-        }
-
-        [Test]
-        public void WhenEmployeeColectScoresEqualZerro_ShouldReturnCorrectResult()
-        {
-            //arrange
-            var employee = new Employee("Szymon", "Kowalik", "36");
-            employee.AddScore(9);
-            employee.AddScore(5);
-            employee.AddScore(7);
-            employee.AddScore(6);
-            employee.AddNegativeScore(27);
-
-            //act
-            int result = employee.Result;
-
-            //assert
-            Assert.AreEqual(0, result);
+            Assert.AreEqual(7, statistics1.Average);
+            Assert.AreEqual(10, statistics1.Max);
+            Assert.AreEqual(4, statistics1.Min);
         }
     }
 }
