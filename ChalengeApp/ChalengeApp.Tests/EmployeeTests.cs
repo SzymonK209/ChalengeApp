@@ -1,6 +1,6 @@
-namespace ChalengeApp
+namespace ChalengeApp.Tests
 {
-    public class Tests
+    public class EmployeeTests
     {
         [Test]
         public void WhenEmployeeColectTwoScores_ShouldReturnCorrectResult()

@@ -10,7 +10,11 @@
             this.Surname = surname;
             this.Age = age;
         }
-       
+        public Employee(string name)
+        {
+            this.Name = name;
+        }
+
         public string Name { get; private set; }
        
         public string Surname { get; private set; }
@@ -25,7 +29,7 @@
             }
 
         }
-
+       
         public void AddScore(int score) 
         {
             this.score.Add(score);
