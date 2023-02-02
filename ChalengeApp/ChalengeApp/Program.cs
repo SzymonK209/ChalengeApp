@@ -2,15 +2,15 @@
 
 var employee = new Employee("Szymon", "Kowalik");
 
-employee.AddGrades(79);
-employee.AddGrades(58);
-employee.AddGrades(97);
-employee.AddGrades(63);
-employee.AddGrades(71);
+employee.AddGrade(20);
+employee.AddGrade("10");
+employee.AddGrade(7.8888888888888888888888888);
+employee.AddGrade(63333);
+employee.AddGrade(-71);
 
 var statistics = employee.GetStatistics();
 
 Console.WriteLine($"Employee {employee.Name} {employee.Surname} received the evaluation results:");
-Console.WriteLine($"Average : {statistics.Average}");
+Console.WriteLine($"Average : {statistics.Average:N2}");
 Console.WriteLine($"Max: {statistics.Max}");
 Console.WriteLine($"Min: {statistics.Min}");
