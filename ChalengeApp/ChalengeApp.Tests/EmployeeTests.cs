@@ -7,18 +7,18 @@ namespace ChalengeApp.Tests
         {
             //arrange
             var employee = new Employee("Szymon", "Kowalik");
-            employee.AddGrades(8);
-            employee.AddGrades(6);
-            employee.AddGrades(7);
-            employee.AddGrades(4);
-            employee.AddGrades(10);
+            employee.AddGrade(5);
+            employee.AddGrade(6);
+            employee.AddGrade(7);
+            employee.AddGrade(4);
+            employee.AddGrade(10);
 
             //act
-            var statistics1 = employee.GetStatistics();
+            var statistics1 = employee.GetStatisticsWithFor();
           
 
             //assert
-            Assert.AreEqual(7, statistics1.Average);
+            Assert.AreEqual(Math.Round(6.40, 2), Math.Round(statistics1.Average), 2);
             Assert.AreEqual(10, statistics1.Max);
             Assert.AreEqual(4, statistics1.Min);
         }
