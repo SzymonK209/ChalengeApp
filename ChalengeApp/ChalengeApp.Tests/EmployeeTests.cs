@@ -8,19 +8,26 @@ namespace ChalengeApp.Tests
             //arrange
             var employee = new Employee("Szymon", "Kowalik");
             employee.AddGrade(5);
-            employee.AddGrade(6);
-            employee.AddGrade(7);
-            employee.AddGrade(4);
-            employee.AddGrade(10);
+            employee.AddGrade(79);
+            employee.AddGrade(7.283);
+            employee.AddGrade("42");
+            employee.AddGrade(11f);
+            employee.AddGrade('A');
+            employee.AddGrade('b');
+            employee.AddGrade('C');
+            employee.AddGrade('d');
+            employee.AddGrade('F');
+
 
             //act
-            var statistics1 = employee.GetStatisticsWithFor();
+            var statistics1 = employee.GetStatistics();
           
 
             //assert
-            Assert.AreEqual(Math.Round(6.40, 2), Math.Round(statistics1.Average), 2);
-            Assert.AreEqual(10, statistics1.Max);
-            Assert.AreEqual(4, statistics1.Min);
+            Assert.AreEqual(Math.Round(42.4, 1), Math.Round(statistics1.Average), 1);
+            Assert.AreEqual(100, statistics1.Max);
+            Assert.AreEqual(0, statistics1.Min);
+            Assert.AreEqual('C', statistics1.AverageLetter);
         }
     }
 }

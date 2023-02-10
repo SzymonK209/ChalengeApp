@@ -7,5 +7,8 @@
         public float Max { get; set; }
 
         public float Min { get; set; }
+
+        public char AverageLetter { get; set; }    
     }
+
 }

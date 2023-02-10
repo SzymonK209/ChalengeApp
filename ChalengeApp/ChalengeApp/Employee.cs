@@ -1,12 +1,13 @@
-﻿using System;
-using System.Diagnostics;
-
-namespace ChalengeApp
+﻿namespace ChalengeApp
 {
     public class Employee
     {
         private List<float> grades = new List<float>();
 
+        public Employee()
+        {
+            
+        }
         public Employee(string name, string surname)
         {
             this.Name = name;
@@ -25,18 +26,55 @@ namespace ChalengeApp
             }
             else
             {
-                Console.WriteLine("invalid grade value");
+                Console.WriteLine("Invalid grade value");
+            }
+        }
+        public void AddGrade(char grade)
+        {
+            switch (grade)
+            {
+                case 'A':
+                case 'a':
+                    this.grades.Add(100);
+                    break;
+                case 'B':
+                case 'b':
+                    this.grades.Add(80);
+                    break;
+                case 'C':
+                case 'c':
+                    this.grades.Add(60);
+                    break;
+                case 'D':
+                case 'd':
+                    this.grades.Add(40);
+                    break;
+                case 'E':
+                case 'e':
+                    this.grades.Add(20);
+                    break;
+                case 'F':
+                case 'f':
+                    this.grades.Add(0);
+                    break;
+                default:
+                    Console.WriteLine("Wrong Letter");
+                    break;
             }
         }
         public void AddGrade(string grade)
         {
-            if (float.TryParse(grade, out float result))
+            if (float.TryParse(grade, out float gradeInString))
             {
-                this.AddGrade(result);
+                this.AddGrade(gradeInString);
+            }
+            else if (char.TryParse(grade, out char gradeInLeatters))
+            {
+                AddGrade(gradeInLeatters);
             }
             else
             {
-                Console.WriteLine("string is not float");
+                Console.WriteLine("String is not float");
             }
         }
 
@@ -65,8 +103,9 @@ namespace ChalengeApp
             var gradeInDecimal = (float)grade;
             this.AddGrade(gradeInDecimal);
         }
+        
 
-        public Statistics GetStatisticsWithForEach()
+        public Statistics GetStatistics()
         {
             var statistics = new Statistics();
             statistics.Average = 0;
@@ -81,6 +120,29 @@ namespace ChalengeApp
             }
 
             statistics.Average /= this.grades.Count;
+            
+            switch(statistics.Average)
+            {
+                case var average when average >= 81:
+                    statistics.AverageLetter = 'A';
+                    break;
+                case var average when average >= 61:
+                    statistics.AverageLetter = 'B';
+                    break;
+                case var average when average >= 41:
+                    statistics.AverageLetter = 'C';
+                    break;
+                case var average when average >= 21:
+                    statistics.AverageLetter = 'D';
+                    break;
+                case var average when average >= 1:
+                    statistics.AverageLetter = 'E';
+                    break;
+                default:
+                    statistics.AverageLetter = 'F';
+                    break;
+            }
+
             return statistics;
         }
     }
