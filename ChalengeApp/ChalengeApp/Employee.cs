@@ -1,13 +1,12 @@
-﻿namespace ChalengeApp
+﻿using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
+
+namespace ChalengeApp
 {
     public class Employee
     {
         private List<float> grades = new List<float>();
 
-        public Employee()
-        {
-            
-        }
         public Employee(string name, string surname)
         {
             this.Name = name;
@@ -26,41 +25,31 @@
             }
             else
             {
-                Console.WriteLine("Invalid grade value");
+                throw new Exception("Invalid grade value! \n");
             }
         }
         public void AddGrade(char grade)
         {
-            switch (grade)
+            var gradeInput = grade switch
             {
-                case 'A':
-                case 'a':
-                    this.grades.Add(100);
-                    break;
-                case 'B':
-                case 'b':
-                    this.grades.Add(80);
-                    break;
-                case 'C':
-                case 'c':
-                    this.grades.Add(60);
-                    break;
-                case 'D':
-                case 'd':
-                    this.grades.Add(40);
-                    break;
-                case 'E':
-                case 'e':
-                    this.grades.Add(20);
-                    break;
-                case 'F':
-                case 'f':
-                    this.grades.Add(0);
-                    break;
-                default:
-                    Console.WriteLine("Wrong Letter");
-                    break;
+                'A' or 'a' => 100,
+                'B' or 'b' => 80,
+                'C' or 'c' => 60,
+                'D' or 'd' => 40,
+                'E' or 'e' => 20,
+                'F' or 'f' => 0,
+                _ => -1,
+            };
+
+            if (gradeInput >= 0 && gradeInput <= 100)
+            {
+                this.grades.Add(gradeInput);
             }
+            else
+            {
+                throw new Exception("Incorrect Letter! \n");
+            }
+
         }
         public void AddGrade(string grade)
         {
@@ -74,10 +63,9 @@
             }
             else
             {
-                Console.WriteLine("String is not float");
+                throw new Exception("String is not float! \n");
             }
         }
-
         public void AddGrade(short grade)
         {
             float gradeInShort = (float)grade;
@@ -103,7 +91,7 @@
             var gradeInDecimal = (float)grade;
             this.AddGrade(gradeInDecimal);
         }
-        
+
 
         public Statistics GetStatistics()
         {
@@ -120,8 +108,8 @@
             }
 
             statistics.Average /= this.grades.Count;
-            
-            switch(statistics.Average)
+
+            switch (statistics.Average)
             {
                 case var average when average >= 81:
                     statistics.AverageLetter = 'A';

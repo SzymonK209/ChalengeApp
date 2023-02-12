@@ -10,7 +10,7 @@ namespace ChalengeApp.Tests
             employee.AddGrade(5);
             employee.AddGrade(79);
             employee.AddGrade(7.283);
-            employee.AddGrade("42");
+            employee.AddGrade(42);
             employee.AddGrade(11f);
             employee.AddGrade('A');
             employee.AddGrade('b');
