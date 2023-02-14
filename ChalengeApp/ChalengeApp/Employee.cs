@@ -1,22 +1,16 @@
-﻿using System.Runtime.CompilerServices;
-using System.Security.Cryptography;
+﻿using System.Diagnostics;
 
 namespace ChalengeApp
 {
-    public class Employee
+    public class Employee : Person
     {
         private List<float> grades = new List<float>();
 
-        public Employee(string name, string surname)
+        public Employee(string name, string surname, string sex, int age)
+            : base(name, surname, sex, age)
         {
-            this.Name = name;
-            this.Surname = surname;
+
         }
-
-        public string Name { get; private set; }
-
-        public string Surname { get; private set; }
-
         public void AddGrade(float grade)
         {
             if (grade >= 0 && grade <= 100)
@@ -38,16 +32,11 @@ namespace ChalengeApp
                 'D' or 'd' => 40,
                 'E' or 'e' => 20,
                 'F' or 'f' => 0,
-                _ => -1,
+                _ => throw new Exception("Incorrect Letter! \n"),
             };
 
-            if (gradeInput >= 0 && gradeInput <= 100)
             {
-                this.grades.Add(gradeInput);
-            }
-            else
-            {
-                throw new Exception("Incorrect Letter! \n");
+                this.AddGrade(gradeInput);
             }
 
         }
@@ -91,8 +80,6 @@ namespace ChalengeApp
             var gradeInDecimal = (float)grade;
             this.AddGrade(gradeInDecimal);
         }
-
-
         public Statistics GetStatistics()
         {
             var statistics = new Statistics();

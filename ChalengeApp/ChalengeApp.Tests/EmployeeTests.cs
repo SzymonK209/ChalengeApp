@@ -6,7 +6,7 @@ namespace ChalengeApp.Tests
         public void WhenEmployeeColectGrades_ShouldReturnCorrectStatistics()
         {
             //arrange
-            var employee = new Employee("Szymon", "Kowalik");
+            var employee = new Employee("Szymon", "Kowalik", "Male", 37);
             employee.AddGrade(5);
             employee.AddGrade(79);
             employee.AddGrade(7.283);
@@ -21,7 +21,7 @@ namespace ChalengeApp.Tests
 
             //act
             var statistics1 = employee.GetStatistics();
-          
+
 
             //assert
             Assert.AreEqual(Math.Round(42.4, 1), Math.Round(statistics1.Average), 1);
