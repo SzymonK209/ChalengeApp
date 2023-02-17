@@ -1,12 +1,10 @@
-﻿using System.Diagnostics;
-
-namespace ChalengeApp
+﻿namespace ChalengeApp
 {
-    public class Employee : IEmployee
+    public class Supervisor : IEmployee
     {
         private List<float> grades = new List<float>();
 
-        public Employee(string name, string surname, string sex, int age, string jobPosition)
+        public Supervisor(string name, string surname, string sex, int age, string jobPosition)
 
         {
             this.Name = name;
@@ -38,17 +36,27 @@ namespace ChalengeApp
                 throw new Exception("Invalid grade value! \n");
             }
         }
-        public void AddGrade(char grade)
+ 
+        public void AddGrade(string grade)
         {
             var gradeInput = grade switch
             {
-                'A' or 'a' => 100,
-                'B' or 'b' => 80,
-                'C' or 'c' => 60,
-                'D' or 'd' => 40,
-                'E' or 'e' => 20,
-                'F' or 'f' => 0,
-                _ => throw new Exception("Incorrect Letter! \n"),
+                "6" => 100,
+                "-6" or "6-" => 95,
+                "5" => 80,
+                "+5" or "5+" => 85,
+                "-5" or "5-" => 75,
+                "4" => 60,
+                "+4" or "4+" => 65,
+                "-4" or "4-" => 55,
+                "3" => 40,
+                "+3" or "3+" => 45,
+                "-3" or "3-" => 35,
+                "2" => 20,
+                "+2" or "2+" => 25,
+                "-2" or "2-" => 15,
+                "1" => 0,
+                _ => throw new Exception("Wrong assessment! \n"),
             };
 
             {
@@ -56,20 +64,9 @@ namespace ChalengeApp
             }
 
         }
-        public void AddGrade(string grade)
+        public void AddGrade(char grade)
         {
-            if (float.TryParse(grade, out float gradeInString))
-            {
-                this.AddGrade(gradeInString);
-            }
-            else if (char.TryParse(grade, out char gradeInLeatters))
-            {
-                AddGrade(gradeInLeatters);
-            }
-            else
-            {
-                throw new Exception("String is not float! \n");
-            }
+            throw new NotImplementedException();
         }
         public void AddGrade(short grade)
         {

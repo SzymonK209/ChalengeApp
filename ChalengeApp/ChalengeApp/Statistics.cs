@@ -1,6 +1,6 @@
 ﻿namespace ChalengeApp
 {
-    public class Statistics
+    public class Statistics 
     {
         public float Average { get; set; }
 

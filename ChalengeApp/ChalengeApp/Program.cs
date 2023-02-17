@@ -58,35 +58,91 @@ while (true)
 
 }
 
-var employee = new Employee(name, surname, sex, age);
+string jobPosition;
 
 while (true)
 {
-    Console.WriteLine("Enter the next grade from 0 to 100, or from A to F and press Enter");
-    var inputGrade = Console.ReadLine();
-    if (inputGrade == "q" || inputGrade == "Q")
+    Console.WriteLine("Enter the employee's job title:\n S - Supervisor, E - Employee");
+    var position = Console.ReadLine();
+    if (position == "S" || position == "s")
     {
+        jobPosition = "Supervisor";
+        var supervisor = new Supervisor(name, surname, sex, age, jobPosition);
+
+        while (true)
+        {
+            Console.WriteLine("Enter the next grade from 1 to 6 and press Enter, or press Q to view statistics");
+            var inputGrade = Console.ReadLine();
+            if (inputGrade == "q" || inputGrade == "Q")
+            {
+                break;
+            }
+            try
+            {
+                supervisor.AddGrade(inputGrade);
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"{ex.Message}");
+                Console.ResetColor();
+            }
+        }
+
+        var statistics = supervisor.GetStatistics();
+
+        Console.WriteLine("----------------------------------------------------------------");
+        Console.ForegroundColor = ConsoleColor.DarkGreen;
+        Console.WriteLine($"\n{supervisor.JobPosition} {supervisor.Name} {supervisor.Surname}  {supervisor.Sex} {supervisor.Age} years old received the evaluation results:");
+        Console.WriteLine($"Average : {statistics.Average:N2}");
+        Console.WriteLine($"Max: {statistics.Max:N2}");
+        Console.WriteLine($"Min: {statistics.Min:N2}");
+        Console.WriteLine($"Average Letter is {statistics.AverageLetter}\n");
+        Console.ResetColor();
         break;
     }
-    try
+    else if (position == "E" || position == "e")
     {
-        employee.AddGrade(inputGrade);
+        jobPosition = "Employee";
+        var employee = new Employee(name, surname, sex, age, jobPosition);
+
+        while (true)
+        {
+            Console.WriteLine("Enter the next grade from 0 to 100, or from A to F and press Enter, or press Q to view statistics");
+            var inputGrade = Console.ReadLine();
+            if (inputGrade == "q" || inputGrade == "Q")
+            {
+                break;
+            }
+            try
+            {
+                employee.AddGrade(inputGrade);
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"{ex.Message}");
+                Console.ResetColor();
+            }
+        }
+
+        var statistics = employee.GetStatistics();
+
+        Console.WriteLine("----------------------------------------------------------------");
+        Console.ForegroundColor = ConsoleColor.DarkGreen;
+        Console.WriteLine($"\n{employee.JobPosition} {employee.Name} {employee.Surname}  {employee.Sex} {employee.Age} years old received the evaluation results:");
+        Console.WriteLine($"Average : {statistics.Average:N2}");
+        Console.WriteLine($"Max: {statistics.Max:N2}");
+        Console.WriteLine($"Min: {statistics.Min:N2}");
+        Console.WriteLine($"Average Letter is {statistics.AverageLetter}\n");
+        Console.ResetColor();
+        break;
     }
-    catch (Exception ex)
+    else
     {
         Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine($"{ex.Message}");
+        Console.WriteLine($"[{position}] is incorect job position!");
         Console.ResetColor();
     }
+
 }
-
-var statistics = employee.GetStatistics();
-
-Console.WriteLine("----------------------------------------------------------------");
-Console.ForegroundColor= ConsoleColor.DarkGreen;
-Console.WriteLine($"\nEmployee {employee.Name} {employee.Surname}  {employee.Sex} {employee.Age}years old received the evaluation results:");
-Console.WriteLine($"Average : {statistics.Average:N2}");
-Console.WriteLine($"Max: {statistics.Max:N2}");
-Console.WriteLine($"Min: {statistics.Min:N2}");
-Console.WriteLine($"Average Letter is {statistics.AverageLetter}\n");
-Console.ResetColor();
