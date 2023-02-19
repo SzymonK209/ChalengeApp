@@ -67,11 +67,11 @@ while (true)
     if (position == "S" || position == "s")
     {
         jobPosition = "Supervisor";
-        var supervisor = new Supervisor(name, surname, sex, age, jobPosition);
+        var supervisor = new SupervisorInFile(name, surname, sex, age, jobPosition);
 
         while (true)
         {
-            Console.WriteLine("Enter the next grade from 1 to 6 and press Enter, or press Q to view statistics");
+            Console.WriteLine("Enter the next grade  from 1 to 6, you can also use + or - for each rating, or press Q to view statistics");
             var inputGrade = Console.ReadLine();
             if (inputGrade == "q" || inputGrade == "Q")
             {
@@ -104,8 +104,7 @@ while (true)
     else if (position == "E" || position == "e")
     {
         jobPosition = "Employee";
-        var employee = new Employee(name, surname, sex, age, jobPosition);
-
+        var employee = new EmployeeInFile(name, surname, sex, age, jobPosition);
         while (true)
         {
             Console.WriteLine("Enter the next grade from 0 to 100, or from A to F and press Enter, or press Q to view statistics");
@@ -127,7 +126,7 @@ while (true)
         }
 
         var statistics = employee.GetStatistics();
-
+        
         Console.WriteLine("----------------------------------------------------------------");
         Console.ForegroundColor = ConsoleColor.DarkGreen;
         Console.WriteLine($"\n{employee.JobPosition} {employee.Name} {employee.Surname}  {employee.Sex} {employee.Age} years old received the evaluation results:");
@@ -141,7 +140,7 @@ while (true)
     else
     {
         Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine($"[{position}] is incorect job position!");
+        Console.WriteLine($"[{position}] is incorect job title");
         Console.ResetColor();
     }
 

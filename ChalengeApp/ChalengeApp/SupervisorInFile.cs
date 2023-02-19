@@ -1,43 +1,33 @@
 ﻿namespace ChalengeApp
 {
-    public class Supervisor : IEmployee
+    public class SupervisorInFile : EmployeeBase
     {
-        private List<float> grades = new List<float>();
+        private const string fileName = "gradesSupervisor.txt";
 
-        public Supervisor(string name, string surname, string sex, int age, string jobPosition)
-
+        public SupervisorInFile(string name, string surname, string sex, int age, string jobPosition)
+            : base(name, surname, sex, age, jobPosition)
         {
-            this.Name = name;
-            this.Surname = surname;
-            this.Sex = sex;
-            this.Age = age;
-            this.JobPosition = jobPosition;
+
         }
-
-        public string Name { get; private set; }
-
-        public string Surname { get; private set; }
-
-        public string Sex { get; private set; }
-
-        public int Age { get; private set; }
-
-        public string JobPosition { get; private set; }
-
-
-        public void AddGrade(float grade)
+        public override void AddGrade(float grade)
         {
-            if (grade >= 0 && grade <= 100)
+            using (var writer = File.AppendText(fileName))
             {
-                this.grades.Add(grade);
-            }
-            else
-            {
-                throw new Exception("Invalid grade value! \n");
+                if (grade >= 0 && grade <= 100)
+                {
+                    writer.WriteLine(grade);
+                }
+                else
+                {
+                    throw new Exception("Invalid grade value! \n");
+                }
             }
         }
- 
-        public void AddGrade(string grade)
+        public override void AddGrade(char grade)
+        {
+            throw new NotImplementedException();
+        }
+        public override void AddGrade(string grade)
         {
             var gradeInput = grade switch
             {
@@ -62,52 +52,56 @@
             {
                 this.AddGrade(gradeInput);
             }
-
         }
-        public void AddGrade(char grade)
-        {
-            throw new NotImplementedException();
-        }
-        public void AddGrade(short grade)
-        {
-            float gradeInShort = (float)grade;
-            this.AddGrade(gradeInShort);
-        }
-        public void AddGrade(int grade)
+        public override void AddGrade(int grade)
         {
             float gradeInInt = (float)grade;
             this.AddGrade(gradeInInt);
         }
-        public void AddGrade(long grade)
-        {
-            float gradeInLong = (float)grade;
-            this.AddGrade(gradeInLong);
-        }
-        public void AddGrade(double grade)
+        public override void AddGrade(double grade)
         {
             float gradeInDouble = (float)grade;
             this.AddGrade(gradeInDouble);
         }
-        public void AddGrade(decimal grade)
+        public override Statistics GetStatistics()
         {
-            var gradeInDecimal = (float)grade;
-            this.AddGrade(gradeInDecimal);
+            var gradesFromFile = this.ReadGradesFromFile();
+            var statistics = this.CountStatistics(gradesFromFile);
+            return statistics;
         }
-        public Statistics GetStatistics()
+        private List<float> ReadGradesFromFile()
+        {
+            var grades = new List<float>();
+            if (File.Exists($"{fileName}"))
+            {
+                using (var reader = File.OpenText($"{fileName}"))
+                {
+                    var line = reader.ReadLine();
+                    while (line != null)
+                    {
+                        var number = float.Parse(line);
+                        grades.Add(number);
+                        line = reader.ReadLine();
+                    }
+                }
+            }
+            return grades;
+        }
+        private Statistics CountStatistics(List<float> grades)
         {
             var statistics = new Statistics();
             statistics.Average = 0;
             statistics.Max = float.MinValue;
             statistics.Min = float.MaxValue;
 
-            foreach (var grade in this.grades)
+            foreach (var grade in grades)
             {
                 statistics.Max = Math.Max(statistics.Max, grade);
                 statistics.Min = Math.Min(statistics.Min, grade);
                 statistics.Average += grade;
             }
 
-            statistics.Average /= this.grades.Count;
+            statistics.Average /= grades.Count;
 
             switch (statistics.Average)
             {

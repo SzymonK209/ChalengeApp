@@ -18,15 +18,9 @@
 
         void AddGrade(string grade);
 
-        void AddGrade(short grade);
-
         void AddGrade(int grade);
 
-        void AddGrade(long grade);
-
         void AddGrade(double grade);
-
-        void AddGrade(decimal grade);
 
         Statistics GetStatistics();
 

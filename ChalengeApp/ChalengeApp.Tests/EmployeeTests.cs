@@ -6,7 +6,7 @@ namespace ChalengeApp.Tests
         public void WhenEmployeeColectGrades_ShouldReturnCorrectStatistics()
         {
             //arrange
-            var employee = new Employee("Szymon", "Kowalik", "Male", 37);
+            var employee = new EmployeeInMemory("Szymon", "Kowalik", "Male", 37, "Supervisor");
             employee.AddGrade(5);
             employee.AddGrade(79);
             employee.AddGrade(7.283);
