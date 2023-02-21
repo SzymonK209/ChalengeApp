@@ -2,6 +2,10 @@
 {
     public class SupervisorInFile : EmployeeBase
     {
+        public delegate void GradeAddedDelegate(object sender, EventArgs args);
+        
+        public event GradeAddedDelegate GradeAdded;
+
         private const string fileName = "gradesSupervisor.txt";
 
         public SupervisorInFile(string name, string surname, string sex, int age, string jobPosition)
@@ -16,6 +20,11 @@
                 if (grade >= 0 && grade <= 100)
                 {
                     writer.WriteLine(grade);
+
+                    if(GradeAdded != null)
+                {
+                    GradeAdded(this, new EventArgs());
+                }
                 }
                 else
                 {
@@ -46,7 +55,7 @@
                 "+2" or "2+" => 25,
                 "-2" or "2-" => 15,
                 "1" => 0,
-                _ => throw new Exception("Wrong assessment! \n"),
+                _ => throw new Exception("Invalid rating value! \n"),
             };
 
             {

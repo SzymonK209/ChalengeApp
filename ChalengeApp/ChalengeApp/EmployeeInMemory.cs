@@ -2,6 +2,9 @@
 {
     public class EmployeeInMemory : EmployeeBase
     {
+        public delegate void GradeAddedDelegate(object sender, EventArgs args);
+
+        public event GradeAddedDelegate GradeAdded;
 
         private List<float> grades = new List<float>();
 
@@ -16,6 +19,11 @@
             if (grade >= 0 && grade <= 100)
             {
                 this.grades.Add(grade);
+
+                if(GradeAdded != null)
+                {
+                    GradeAdded(this, new EventArgs());
+                }
             }
             else
             {
@@ -48,7 +56,7 @@
             }
             else if (char.TryParse(grade, out char gradeInLeatters))
             {
-                AddGrade(gradeInLeatters);
+                this.AddGrade(gradeInLeatters);
             }
             else
             {

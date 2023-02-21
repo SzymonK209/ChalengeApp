@@ -1,10 +1,14 @@
 ﻿namespace ChalengeApp
 {
-    public class Supervisor : EmployeeBase
+    public class SupervisorInMemory : EmployeeBase
     {
+        public delegate void GradeAddedDelegate(object sender, EventArgs args);
+
+        public event GradeAddedDelegate GradeAdded;
+
         private List<float> grades = new List<float>();
 
-        public Supervisor(string name, string surname, string sex, int age, string jobPosition)
+        public SupervisorInMemory(string name, string surname, string sex, int age, string jobPosition)
             : base(name, surname, sex, age, jobPosition)
         {
 
@@ -26,6 +30,11 @@
             if (grade >= 0 && grade <= 100)
             {
                 this.grades.Add(grade);
+
+                if (GradeAdded != null)
+                {
+                    GradeAdded(this, new EventArgs());
+                }
             }
             else
             {
@@ -52,7 +61,7 @@
                 "+2" or "2+" => 25,
                 "-2" or "2-" => 15,
                 "1" => 0,
-                _ => throw new Exception("Wrong assessment! \n"),
+                _ => throw new Exception("Invalid rating value! \n"),
             };
 
             {
