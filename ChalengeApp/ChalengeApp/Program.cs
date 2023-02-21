@@ -1,4 +1,5 @@
 ﻿using ChalengeApp;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 Console.ForegroundColor = ConsoleColor.Yellow;
 Console.WriteLine();
@@ -225,9 +226,11 @@ static void VievStatistics(IEmployee employee)
     Console.WriteLine("----------------------------------------------------------------");
     Console.ForegroundColor = ConsoleColor.DarkGreen;
     Console.WriteLine($"\n{employee.JobPosition} {employee.Name} {employee.Surname}  {employee.Sex} {employee.Age} years old received the evaluation results:");
-    Console.WriteLine($"Average : {statistics.Average:N2}");
-    Console.WriteLine($"Max: {statistics.Max:N2}");
-    Console.WriteLine($"Min: {statistics.Min:N2}");
+    Console.WriteLine($"Number of ratings: {statistics.Count}");
+    Console.WriteLine($"Sum of ratings: {statistics.Sum:N2}");
+    Console.WriteLine($"Average of ratings: {statistics.Average:N2}");
+    Console.WriteLine($"Maximum rating: {statistics.Max:N2}");
+    Console.WriteLine($"Minimum rating: {statistics.Min:N2}");
     Console.WriteLine($"Average Letter is {statistics.AverageLetter}\n");
     Console.ResetColor();
 }

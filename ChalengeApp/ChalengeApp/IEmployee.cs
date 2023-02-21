@@ -1,7 +1,12 @@
-﻿namespace ChalengeApp
+﻿using static ChalengeApp.EmployeeBase;
+
+namespace ChalengeApp
 {
     public interface IEmployee
     {
+
+        event GradeAddedDelegate GradeAdded;
+
         string Name { get; }
 
         string Surname { get; }
